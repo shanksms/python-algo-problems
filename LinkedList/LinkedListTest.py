@@ -27,6 +27,41 @@ class LinkedList:
         else:
             tail.next = node1
         return head.next
+    def detectCycle1(self, node):
+        s = set()
+        s.add(node)
+        while node:
+            if node.next in s:
+                #Calculate cycle length
+                return self.cycleLength(node.next)
+            else:
+                s.add(node.next)
+            node = node.next
+        return None
+    def detectCycle2(self, node):
+        slow = node.next
+        #if there is only one node, then return None
+        if slow == None:
+            return None
+        fast = node.next.next
+        while slow != None and fast != None and fast.next != None:
+            if slow == fast:
+                #loop exists
+                return self.cycleLength(slow)
+            else:
+                slow = slow.next
+                fast = fast.next.next
+        return None
+
+    def cycleLength(self, node):
+        tmpNode = node.next
+        step = 1
+        while tmpNode != node:
+            step += 1
+            tmpNode = tmpNode.next
+
+        return step
+
 
 def testPrintList():
     llist = LinkedList()
@@ -53,5 +88,15 @@ def testMergeLists():
 
     result = llist.mergeLinkedLists(first1, first2)
     llist.printList(result)
+def testCycle():
+    llist = LinkedList()
+    first = Node(1)
+    second = Node(2)
+    third = Node(3)
+    first.next = second
+    second.next = third
+    third.next = first
+    print(llist.detectCycle2(first))
+
 if __name__ == '__main__':
-    testMergeLists()
+    testCycle()
