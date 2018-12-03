@@ -10,12 +10,8 @@ for num in nums:
     if num & (num - 1):
         print(-1)
     else:
-        while num:
-            result = num  & 1
-            if result is 1:
-                break
-            else:
-                count += 1
-                num = num >> 1
+        while not (num & 1):
+            count += 1
+            num = num >> 1
 
         print(count)
