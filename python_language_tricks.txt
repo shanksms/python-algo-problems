@@ -1,0 +1,18 @@
+##############Convert a letter to its Ascii rep#########################
+ord('A') will give you 65
+suppose you want to encode characters e.g. A should be 1, B should be 2 etc.
+you can do it following way:
+ord(c) - ord('A') + 1
+############convert a ascii code to a letter############################
+chr(n)
+chr(65) will return 65
+
+###########List slicing#################################################
+
+
+###########check if a char is a number###################################
+c = '1'
+c.isdigit() will return true
+
+##########sort a list based on a key#####################################
+sorted(list, key=len)
